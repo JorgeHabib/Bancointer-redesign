@@ -1,4 +1,4 @@
-const theme = {
+export default {
   colors: {
     primary: '#FF8700',
     primaryDark: '#FF7A00',
@@ -25,6 +25,4 @@ const theme = {
   transition: {
     default: '180ms ease-in-out',
   }
-}
-
-export default theme;
+} as const;
