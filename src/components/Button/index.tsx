@@ -7,7 +7,7 @@ import { ButtonProps } from './Button.d';
 const Button: React.FC<ButtonProps> = ({
   loading,
   type,
-  variant = 'secondary',
+  variant = 'transparent',
   children,
   ...rest
 }) => {
