@@ -13,15 +13,22 @@ const variants = {
 }
 
 export const Container = styled.button<ButtonProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${({ theme, variant }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  background: ${({ theme }) => theme.colors.background};
-  border: 0;
-  padding: 0.8rem 2.4rem;
-  border-radius: 0.4rem;
-  color: ${({ theme }) => theme.colors.secondary};
+    background: ${theme.colors.background};
+    border: 0;
+    padding: 0.8rem 2.4rem;
+    border-radius: 0.4rem;
+    color: ${theme.colors.secondary};
+    transition: ${theme.transition.default};
 
-  ${({ variant }) => variant && variants[variant]}
+    * {
+      transition: ${theme.transition.default}
+    }
+
+    ${variant && variants[variant]}
+  `}
 `;
