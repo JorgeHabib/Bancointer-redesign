@@ -1,15 +1,21 @@
 import React from 'react';
 
 import Header from './Header';
+import Sidebar from './Header/SideBar';
 
-import { Container } from './styles';
+import {
+  Container,
+  Wrapper,
+} from './styles';
 
 const Dashboard: React.FC = () => {
   return (
     <>
       <Header />
       <Container>
-        <h1>Dashboard</h1>
+        <Wrapper>
+          <Sidebar />
+        </Wrapper>
       </Container>
     </>
   );
