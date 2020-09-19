@@ -36,6 +36,10 @@ export const Container = styled(Button)`
       :last-child {
         margin-left: auto;
       }
+
+      > svg {
+        stroke: ${theme.colors.primary}
+      }
     }
 
     > svg {

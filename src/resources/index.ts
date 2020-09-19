@@ -1,1 +1,2 @@
-export { default as dashboardNavigation } from './dashboardNavigation';
+export { default as sidebarNavigation } from './sidebar.navigation';
+export { default as cardsNavigation } from './cards.navigation';
