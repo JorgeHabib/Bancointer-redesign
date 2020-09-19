@@ -12,7 +12,7 @@ export const Container = styled.div`
     height: 100%;
 
     border-radius: ${theme.radius.default};
-    box-shadow: 0px 0.5rem 2rem rgba(0, 0, 0, 0.08);
+    box-shadow: ${theme.shadows.default};
 
     padding: 2.4rem;
   `}

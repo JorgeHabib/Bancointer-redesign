@@ -28,5 +28,8 @@ export default {
   radius: {
     default: '0.8rem',
     small: '0.4rem'
+  },
+  shadows: {
+    default: '0px 5px 20px rgba(0, 0, 0, 0.08)',
   }
 } as const;
