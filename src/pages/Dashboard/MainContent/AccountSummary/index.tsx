@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 
 import { ResponsiveLine } from '@nivo/line';
+import { ResponsiveBar } from '@nivo/bar';
 
 import { FiCreditCard, FiFileText, FiEyeOff, FiEye } from 'react-icons/fi';
+
 import { PlataformaPaiIcon } from '../../../../assets/images/icons';
 import CreditCardIllustration from '../../../../assets/images/illustrations/card-illustration.png';
+
+import { barChartData } from '../../../../resources';
 
 import Button from '../../../../components/Button';
 
@@ -45,6 +49,8 @@ const data = [
   },
 ]
 
+
+
 const AccountSummary: React.FC = () => {
   const [displayStatement, setDisplayStatement] = useState(true);
   const [displayInvestments, setDisplayInvestments] = useState(true);
@@ -66,7 +72,52 @@ const AccountSummary: React.FC = () => {
         </Header>
         <DataWrapper>
           <LeftData>
-            Grafico
+            <ResponsiveBar
+              data={barChartData}
+              indexBy="month"
+              keys={['income', 'outcome']}
+              colors={({ id, data }) => data[`${id}Color`]}
+              margin={{ top: 8, right: 0, bottom: 24, left: -8 }}
+              padding={0.7}
+              borderRadius={0}
+              axisTop={null}
+              axisRight={null}
+              axisLeft={null}
+              axisBottom={{
+                tickSize: 0,
+                tickPadding: 8,
+                tickRotation: 0,
+              }}
+              animate
+              tooltip={(chart) => {
+                const label = chart.id === 'income' ? 'Receita' : 'Despesas';
+                const value = chart.data[chart.id] < 0 ? Number(chart.data[chart.id]) * -1 : chart.data[chart.id];
+
+                return (
+                  <CustomTooltip
+                    rightArrow
+                  >{label}: R$ {value}</CustomTooltip>
+                )
+              }}
+              theme={{
+                tooltip: {
+                  container: {
+                    background: 'transparent',
+                    border: 0,
+                    boxShadow: 'none',
+                    padding: 0,
+                  },
+                  tableCell: {
+                    padding: 0,
+                  },
+                }
+              }}
+              motionStiffness={90}
+              motionDamping={15}
+              enableLabel={false}
+              enableGridY={false}
+
+            />
           </LeftData>
           <RightData>
             <span>Receitas - Maio</span>

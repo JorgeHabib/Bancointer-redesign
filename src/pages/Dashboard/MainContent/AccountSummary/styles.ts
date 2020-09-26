@@ -137,8 +137,8 @@ ${({ theme, income, outcome }) => css`
 `}
 `;
 
-export const CustomTooltip = styled.div`
-${({ theme }) => css`
+export const CustomTooltip = styled.div<{ rightArrow?: boolean }>`
+${({ theme, rightArrow }) => css`
   background: ${theme.colors.lightGrey};
 
   padding: 0.4rem 0.8rem;
@@ -153,12 +153,18 @@ ${({ theme }) => css`
     content: '';
     display: block;
     height: 0;
-    left: 50%;
+    left: ${rightArrow ? `100%` : `50%`};
     bottom: -45%;
-    transform: translate3d(-50%, 25%, 0);
+    transform: ${rightArrow
+      ? `translate3d(0%, -175%, 0)`
+      : `translate3d(-50%, 25%, 0)`
+    };
 
     position: absolute;
-    border-color: ${theme.colors.lightGrey}  transparent transparent transparent;
+    border-color: ${rightArrow
+      ? `transparent transparent transparent ${theme.colors.lightGrey}`
+      : `${theme.colors.lightGrey}  transparent transparent transparent`
+    };
     border-style: solid;
     border-width: 0.8rem;
   }
