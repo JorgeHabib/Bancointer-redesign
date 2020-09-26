@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 
+import { ResponsiveLine } from '@nivo/line';
+
 import { FiCreditCard, FiFileText, FiEyeOff, FiEye } from 'react-icons/fi';
 import { PlataformaPaiIcon } from '../../../../assets/images/icons';
 import CreditCardIllustration from '../../../../assets/images/illustrations/card-illustration.png';
 
 import Button from '../../../../components/Button';
+
+import { useTheme } from 'styled-components';
 
 import {
   Container,
@@ -14,11 +18,38 @@ import {
   RightData,
   DataValue,
   DataWrapper,
+  CustomTooltip,
 } from './styles';
+
+const data = [
+  {
+    "id": "japan",
+    "data": [
+      {
+        "x": "jan",
+        "y": 26
+      },
+      {
+        "x": "fev",
+        "y": 55
+      },
+      {
+        "x": "mar",
+        "y": 35
+      },
+      {
+        "x": "abr",
+        "y": 67
+      },
+    ]
+  },
+]
 
 const AccountSummary: React.FC = () => {
   const [displayStatement, setDisplayStatement] = useState(true);
   const [displayInvestments, setDisplayInvestments] = useState(true);
+
+  const { colors } = useTheme();
 
   return (
     <Container>
@@ -79,7 +110,42 @@ const AccountSummary: React.FC = () => {
           </Button>
         </Header>
         <DataWrapper>
-          <LeftData>Grafico</LeftData>
+          <LeftData>
+            <ResponsiveLine
+              data={data}
+              useMesh
+              margin={{ top: 8, right: 8, bottom: 20, left: 8 }}
+              xScale={{ type: 'point' }}
+              yScale={{
+                type: 'linear',
+                min: 'auto',
+                max: 'auto',
+              }}
+              tooltip={({ point }) => (
+                <CustomTooltip>
+                  {point.data.yFormatted}%
+                </CustomTooltip>
+              )}
+              enableCrosshair={false}
+              axisLeft={null}
+              axisTop={null}
+              axisRight={null}
+              axisBottom={{
+                orient: 'bottom',
+                tickSize: 0,
+                tickPadding: 8,
+                tickRotation: 0,
+              }}
+              curve="cardinal"
+              colors={colors.success}
+              lineWidth={1.5}
+              pointSize={8}
+              pointColor={colors.success}
+              pointLabel="y"
+              pointLabelYOffset={-12}
+              enableGridY={false}
+            />
+          </LeftData>
           <RightData>
             <span>Total investido</span>
             <DataValue>
