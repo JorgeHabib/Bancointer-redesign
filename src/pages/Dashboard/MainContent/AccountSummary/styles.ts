@@ -81,7 +81,10 @@ export const LeftData = styled.div`
 ${({ theme }) => css`
   margin-right: 0.8rem;
   max-width: 55%;
+  max-height: 9.6rem;
+
   width: 100%;
+  height: 100%;
 
   display: flex;
   justify-content: center;
@@ -90,6 +93,11 @@ ${({ theme }) => css`
   > img {
     height: 10.4rem;
     width: auto;
+  }
+
+  text {
+    font-size: ${theme.fontSizes.tiny} !important;
+    fill: ${theme.colors.grey} !important;
   }
 `}
 `;
@@ -126,5 +134,40 @@ export const DataValue = styled.div<DataValueType>`
 ${({ theme, income, outcome }) => css`
   color: ${getDataColor(theme, { income, outcome })};
   font-size: ${theme.fontSizes.default};
+`}
+`;
+
+export const CustomTooltip = styled.div<{ rightArrow?: boolean }>`
+${({ theme, rightArrow }) => css`
+  background: ${theme.colors.lightGrey};
+
+  padding: 0.4rem 0.8rem;
+
+  font-size: ${theme.fontSizes.default};
+  border-radius: ${theme.radius.small};
+  text-align: center;
+
+  box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.28);
+
+  :before{
+    content: '';
+    display: block;
+    height: 0;
+    left: ${rightArrow ? `100%` : `50%`};
+    bottom: -45%;
+    transform: ${rightArrow
+      ? `translate3d(0%, -175%, 0)`
+      : `translate3d(-50%, 25%, 0)`
+    };
+
+    position: absolute;
+    border-color: ${rightArrow
+      ? `transparent transparent transparent ${theme.colors.lightGrey}`
+      : `${theme.colors.lightGrey}  transparent transparent transparent`
+    };
+    border-style: solid;
+    border-width: 0.8rem;
+  }
+
 `}
 `;
