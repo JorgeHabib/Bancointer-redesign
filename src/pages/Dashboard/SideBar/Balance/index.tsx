@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
-import Button from '../../../../../components/Button';
+import Button from '../../../../components/Button';
 
 import {
   Container,

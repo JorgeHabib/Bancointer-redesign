@@ -1,11 +1,18 @@
 import styled, { css } from 'styled-components';
 import { transparentize } from 'polished';
-import Button from '../../../../components/Button';
+import Button from '../../../components/Button';
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1 100%;
+
+  max-width: 26.4rem;
+`;
+
+export const Container = styled.section`
   ${({ theme }) => css`
     background: ${({ theme }) => theme.colors.background};
-    max-width: 26.4rem;
     max-height: 60rem;
 
     width: 100%;
@@ -39,3 +46,4 @@ export const AmountInvested = styled(Button)`
   `};
   }
 `;
+
