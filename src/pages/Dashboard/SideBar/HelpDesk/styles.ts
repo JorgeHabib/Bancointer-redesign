@@ -26,7 +26,7 @@ ${({ theme }) => css`
   }
 
   > span {
-    font-size: ${theme.fontSizes.small};
+    font-size: ${theme.fontSizes.default};
   }
 `}
 `;

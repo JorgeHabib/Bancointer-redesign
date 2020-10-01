@@ -22,7 +22,6 @@ ${({ theme }) => css`
 
     + div {
       margin-top: 2.4rem;
-      height: 100%;
     }
   }
 `}
@@ -88,8 +87,7 @@ ${({ theme }) => css`
   max-width: 38.4rem;
   width: 100%;
 
-  max-height: 18.4rem;
-  height: 100%;
+  height: 18.4rem;
 
   color: ${theme.colors.yellow};
   background-image: url(${EquityButtonBackground});
@@ -97,6 +95,10 @@ ${({ theme }) => css`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+
+  > h3 {
+    font-size: ${theme.fontSizes.large};
+  }
 
   > div {
     display: flex;
@@ -147,8 +149,8 @@ ${({ theme }) => css`
 
     > h3 {
       text-align: start;
+      line-height: 2.4rem;
 
-      max-width: 21.5rem;
       font-size: ${theme.fontSizes.large};
     }
   }
@@ -167,6 +169,7 @@ ${({ theme }) => css`
       p {
         color: ${theme.colors.background};
         text-align: start;
+        line-height: 2.4rem;
 
         max-width: 11.7rem;
       }

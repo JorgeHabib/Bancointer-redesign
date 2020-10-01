@@ -8,6 +8,7 @@ import {
   Container,
   Wrapper,
 } from './styles';
+import Footer from './Footer';
 
 const Dashboard: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const Dashboard: React.FC = () => {
           <MainContent />
         </Wrapper>
       </Container>
+      <Footer />
     </>
   );
 };

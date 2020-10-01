@@ -69,13 +69,13 @@ const BankProducts: React.FC = () => {
         <LoanButton background={colors.secondary}>
           <div>
             <h4>Quer ficar livre dos juros altos?</h4>
-            <h3>Empréstimo Consignado, o crédito para o seu momento </h3>
+            <h3>Empréstimo Consignado,<br /> o crédito para o seu momento </h3>
           </div>
 
           <div>
             <div>
               <FiChevronRight color={colors.yellow} />
-              <p>Taxas a partir de <strong>1,30%</strong> ao mês</p>
+              <p>Taxas a partir <br />de <strong>1,30%</strong> ao mês</p>
             </div>
             <Button background={colors.yellow} color={darken(0.25, colors.yellow)}>Solicitar agora</Button>
           </div>
