@@ -76,7 +76,7 @@ ${({ theme }) => css`
 `}
 `;
 
-export const EquityButton = styled(ButtonContainer)`
+export const EquitySection = styled.section`
 ${({ theme }) => css`
   display: flex;
   align-items: center;
@@ -91,6 +91,7 @@ ${({ theme }) => css`
 
   color: ${theme.colors.yellow};
   background-image: url(${EquityButtonBackground});
+  background-color: ${theme.colors.primaryDark};
 
   flex-direction: column;
   align-items: flex-start;
@@ -133,11 +134,12 @@ ${({ theme }) => css`
 `}
 `;
 
-export const LoanButton = styled(EquityButton)`
+export const LoanSection = styled(EquitySection)`
 ${({ theme }) => css`
   background-image: none;
+  background: ${theme.colors.secondary};
 
-  >div:first-child {
+  > div:first-child {
     flex-direction: column;
     align-items: flex-start;
 
@@ -162,7 +164,7 @@ ${({ theme }) => css`
       > svg {
         height: 16px;
         width: 16px;
-        margin-top: 0.2rem;
+        margin-top: 0.5rem;
         margin-right: 0.8rem;
       }
 
