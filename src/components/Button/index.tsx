@@ -7,14 +7,18 @@ import { ButtonProps } from './Button.d';
 const Button: React.FC<ButtonProps> = ({
   loading,
   type,
-  variant = 'transparent',
+  variant,
   children,
+  background,
+  color,
   ...rest
 }) => {
   return (
     <Container
       type={type || 'button'}
       variant={variant}
+      color={color}
+      background={background}
       {...rest}
     >
       {loading ? 'Carregando' : children}

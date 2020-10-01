@@ -9,6 +9,7 @@ export default {
     success: '#20C05C',
     error: '#FD4F48',
     background: '#fff',
+    yellow: '#FFED00',
   },
   fontSizes: {
     default: '1.4rem',
@@ -30,6 +31,7 @@ export default {
     small: '0.4rem'
   },
   shadows: {
-    default: '0px 5px 20px rgba(0, 0, 0, 0.08)',
+    default: '0px 0.5rem 2rem rgba(0, 0, 0, 0.08)',
+    flat: '0, 0.2rem 0.2rem rgba(0, 0, 0, 0.08)',
   }
 } as const;

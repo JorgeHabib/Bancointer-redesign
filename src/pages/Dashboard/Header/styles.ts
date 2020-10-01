@@ -40,4 +40,8 @@ export const RightNav = styled.div`
 
   flex: 1;
   justify-content: flex-end;
+
+  > button {
+    font-size: ${({ theme }) => theme.fontSizes.default};
+  }
 `;

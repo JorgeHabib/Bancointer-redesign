@@ -1,13 +1,14 @@
 import React from 'react';
 
 import Header from './Header';
-import Sidebar from './Header/SideBar';
+import Sidebar from './SideBar';
 import MainContent from './MainContent';
 
 import {
   Container,
   Wrapper,
 } from './styles';
+import Footer from './Footer';
 
 const Dashboard: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const Dashboard: React.FC = () => {
           <MainContent />
         </Wrapper>
       </Container>
+      <Footer />
     </>
   );
 };
