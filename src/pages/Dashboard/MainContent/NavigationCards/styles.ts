@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
 import { transparentize } from 'polished';
 
-import Button from '../../../../components/Button';
+import { Container as Button } from '../../../../components/Button/styles';
+import { motion } from 'framer-motion';
 
-export const Container = styled.div`
+export const Container = styled(motion.div)`
 ${({ theme }) => css`
   height: 100%;
   width: 100%;
@@ -38,7 +39,7 @@ ${({ theme }) => css`
 `}
 `;
 
-export const Navigation = styled.div`
+export const Navigation = styled.nav`
 ${({ theme }) => css`
   display: grid;
   grid-template-columns: repeat(6, minmax(10.4rem, 1fr));
