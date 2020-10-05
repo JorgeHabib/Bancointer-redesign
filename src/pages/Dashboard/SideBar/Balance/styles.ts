@@ -36,13 +36,13 @@ export const BalanceContainer = styled.div`
       display: block;
 
       :last-child {
-        max-width: 8.5rem;
+        max-width: 10.5rem;
 
         margin: 0.2rem 0;
 
         height: 2rem;
         background: ${theme.colors.darkGrey}b3;
-        border-radius: ${theme.radius.small};
+        border-radius: 0.1rem;
       }
     }
 

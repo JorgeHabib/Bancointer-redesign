@@ -2,8 +2,9 @@ import styled, { css } from 'styled-components';
 import { transparentize } from 'polished';
 
 import { Container as ButtonContainer } from '../../../../components/Button/styles';
+import { motion } from 'framer-motion';
 
-export const Container = styled.aside`
+export const Container = styled(motion.aside)`
 ${({ theme }) => css`
   margin-top: 2.4rem;
   background: ${transparentize(0.92, theme.colors.grey)};

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { ResponsiveLine } from '@nivo/line';
 import { ResponsiveBar } from '@nivo/bar';
@@ -8,9 +8,11 @@ import { FiCreditCard, FiFileText, FiEyeOff, FiEye } from 'react-icons/fi';
 import { PlataformaPaiIcon } from '../../../../assets/images/icons';
 import CreditCardIllustration from '../../../../assets/images/illustrations/card-illustration.png';
 
-import { barChartData } from '../../../../resources';
+import { barChartData, lineChartData, hiddenInvestments, hiddenBalance } from '../../../../resources';
 
 import Button from '../../../../components/Button';
+
+import { DEFAULT_TRANSITION } from '../../../../constants';
 
 import { useTheme } from 'styled-components';
 
@@ -25,47 +27,65 @@ import {
   CustomTooltip,
 } from './styles';
 
-const data = [
-  {
-    "id": "japan",
-    "data": [
-      {
-        "x": "jan",
-        "y": 26
-      },
-      {
-        "x": "fev",
-        "y": 55
-      },
-      {
-        "x": "mar",
-        "y": 35
-      },
-      {
-        "x": "abr",
-        "y": 67
-      },
-    ]
+
+const containerAnimation = {
+  unMounted: {
+    y: 50,
+    opacity: 0,
   },
-]
+  mounted: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      delay: 0.3,
+      when: 'beforeChildren',
+      staggerChildren: 0.3,
+    }
+  },
+}
 
-
+const cardsAnimation = {
+  unMounted: {
+    y: 50,
+    opacity: 0,
+  },
+  mounted: {
+    y: 0,
+    opacity: 1,
+  },
+}
 
 const AccountSummary: React.FC = () => {
-  const [displayStatement, setDisplayStatement] = useState(true);
-  const [displayInvestments, setDisplayInvestments] = useState(true);
+  const [displayStatement, setDisplayStatement] = useState(false);
+  const [displayInvestments, setDisplayInvestments] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setDisplayStatement(true);
+      setDisplayInvestments(true);
+    }, 1750)
+  }, []);
 
   const { colors } = useTheme();
 
   return (
-    <Container>
-      <Card>
+    <Container
+      layout
+      variants={containerAnimation}
+      transition={DEFAULT_TRANSITION}
+    >
+      <Card
+        layout
+        key="extrato"
+        variants={cardsAnimation}
+        transition={DEFAULT_TRANSITION}
+      >
         <Header iconStroke>
           <FiFileText />
           <h3>Extrato</h3>
           <Button
             onClick={() => setDisplayStatement(prevState => !prevState)}
-            variant="transparent"
+            revision="transparent"
           >
             {displayStatement ? <FiEyeOff /> : <FiEye />}
           </Button>
@@ -73,13 +93,14 @@ const AccountSummary: React.FC = () => {
         <DataWrapper>
           <LeftData>
             <ResponsiveBar
-              data={barChartData}
+              animate={true}
+              data={displayStatement ? barChartData : hiddenBalance}
               indexBy="month"
               keys={['income', 'outcome']}
               colors={({ id, data }) => data[`${id}Color`]}
-              margin={{ top: 8, right: 0, bottom: 24, left: -8 }}
-              padding={0.7}
-              borderRadius={0}
+              margin={{ top: 8, right: -4, bottom: 24, left: -8 }}
+              padding={0.8}
+              borderRadius={2}
               axisTop={null}
               axisRight={null}
               axisLeft={null}
@@ -88,7 +109,6 @@ const AccountSummary: React.FC = () => {
                 tickPadding: 8,
                 tickRotation: 0,
               }}
-              animate
               tooltip={(chart) => {
                 const label = chart.id === 'income' ? 'Receita' : 'Despesas';
                 const value = chart.data[chart.id] < 0 ? Number(chart.data[chart.id]) * -1 : chart.data[chart.id];
@@ -116,7 +136,6 @@ const AccountSummary: React.FC = () => {
               motionDamping={15}
               enableLabel={false}
               enableGridY={false}
-
             />
           </LeftData>
           <RightData>
@@ -132,7 +151,12 @@ const AccountSummary: React.FC = () => {
         </DataWrapper>
       </Card>
 
-      <Card>
+      <Card
+        layout
+        key="credit-card"
+        variants={cardsAnimation}
+        transition={DEFAULT_TRANSITION}
+      >
         <Header iconStroke>
           <FiCreditCard />
           <h3>MasterCard 8430</h3>
@@ -147,13 +171,18 @@ const AccountSummary: React.FC = () => {
         </DataWrapper>
       </Card>
 
-      <Card>
+      <Card
+        layout
+        key="plataforma-pai"
+        variants={cardsAnimation}
+        transition={DEFAULT_TRANSITION}
+      >
         <Header>
           <PlataformaPaiIcon />
           <h3>Plataforma Aberta Inter</h3>
           <Button
             onClick={() => setDisplayInvestments(prevState => !prevState)}
-            variant="transparent"
+            revision="transparent"
           >
             {
               displayInvestments ? <FiEyeOff /> : <FiEye />
@@ -163,9 +192,9 @@ const AccountSummary: React.FC = () => {
         <DataWrapper>
           <LeftData>
             <ResponsiveLine
-              data={data}
+              data={displayInvestments ? lineChartData : hiddenInvestments}
               useMesh
-              margin={{ top: 8, right: 8, bottom: 20, left: 8 }}
+              margin={{ top: 8, right: 16, bottom: 20, left: 8 }}
               xScale={{ type: 'point' }}
               yScale={{
                 type: 'linear',

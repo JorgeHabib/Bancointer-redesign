@@ -5,11 +5,14 @@ import theme from './styles/theme';
 import GlobalStyle from './styles/global';
 
 import Dashboard from './pages/Dashboard';
+import { AnimatePresence } from 'framer-motion';
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Dashboard />
+      <AnimatePresence exitBeforeEnter>
+        <Dashboard />
+      </AnimatePresence>
       <GlobalStyle />
     </ThemeProvider>
   );

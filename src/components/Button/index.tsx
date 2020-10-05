@@ -7,7 +7,7 @@ import { ButtonProps } from './Button.d';
 const Button: React.FC<ButtonProps> = ({
   loading,
   type,
-  variant,
+  revision,
   children,
   background,
   color,
@@ -16,7 +16,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <Container
       type={type || 'button'}
-      variant={variant}
+      revision={revision}
       color={color}
       background={background}
       {...rest}

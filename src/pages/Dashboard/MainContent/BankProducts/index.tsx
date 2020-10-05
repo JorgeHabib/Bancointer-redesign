@@ -6,6 +6,8 @@ import { darken } from 'polished';
 
 import Button from '../../../../components/Button';
 
+import { DEFAULT_TRANSITION } from '../../../../constants';
+
 import {
   Container,
   ShoppingButton,
@@ -17,11 +19,31 @@ import {
 
 import { bankProducts } from '../../../../resources';
 
+const containerAnimation = {
+  unMounted: {
+    y: 0,
+    x: 50,
+    opacity: 0
+  },
+  mounted: {
+    y: 0,
+    x: 0,
+    opacity: 1,
+    transition: {
+      ...DEFAULT_TRANSITION,
+      delay: 0.9,
+    }
+  },
+}
+
 const BankProducts: React.FC = () => {
   const { colors } = useTheme();
 
   return (
-    <Container>
+    <Container
+      layout
+      variants={containerAnimation}
+    >
       <div>
         <ShoppingButton
           background={colors.lightGrey}

@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
 import styled, { css, DefaultTheme } from 'styled-components';
 
-export const Container = styled.section`
+export const Container = styled(motion.section)`
 ${({ theme }) => css`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -13,7 +14,7 @@ ${({ theme }) => css`
 `}
 `;
 
-export const Card = styled.article`
+export const Card = styled(motion.article)`
 ${({ theme }) => css`
   background: ${theme.colors.background};
   max-width: 26.4rem;
@@ -149,7 +150,7 @@ ${({ theme, rightArrow }) => css`
 
   box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.28);
 
-  :before{
+  /* :before{
     content: '';
     display: block;
     height: 0;
@@ -167,7 +168,7 @@ ${({ theme, rightArrow }) => css`
     };
     border-style: solid;
     border-width: 0.8rem;
-  }
+  } */
 
 `}
 `;

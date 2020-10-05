@@ -13,7 +13,7 @@ type DropdownProps = {
 const Dropdown: React.FC<DropdownProps> = ({ icon, sectionName }) => {
   return (
     <Container
-      variant={"transparent"}
+      revision={"transparent"}
     >
       <div>
         {icon}

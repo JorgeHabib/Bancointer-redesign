@@ -10,12 +10,29 @@ import {
 } from './styles';
 import Footer from './Footer';
 
+const animation = {
+  unMounted: { opacity: 0 },
+  mounted: {
+    opacity: 1,
+    // transition: {
+    //   when: 'beforeChildren',
+    //   staggerChildren: 0.2,
+    // }
+  },
+}
+
 const Dashboard: React.FC = () => {
   return (
     <>
       <Header />
       <Container>
-        <Wrapper>
+        <Wrapper
+          layout
+          variants={animation}
+          initial="unMounted"
+          animate="mounted"
+          transition={{ duration: 1 }}
+        >
           <Sidebar />
           <MainContent />
         </Wrapper>

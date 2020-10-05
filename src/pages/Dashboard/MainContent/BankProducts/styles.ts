@@ -3,9 +3,11 @@ import { Container as ButtonContainer } from '../../../../components/Button/styl
 
 import { Navigation, Card } from '../NavigationCards/styles';
 
+import { motion } from 'framer-motion';
+
 import EquityButtonBackground from '../../../../assets/images/illustrations/button-background.svg';
 
-export const Container = styled.section`
+export const Container = styled(motion.section)`
 ${({ theme }) => css`
   background: ${theme.colors.background};
   max-height: 34.2rem;

@@ -5,6 +5,7 @@ import Dropdown from './Dropdown';
 import HelpDesk from './HelpDesk';
 
 import { sidebarNavigation } from '../../../resources';
+import { DEFAULT_TRANSITION } from '../../../constants';
 
 import {
   Container,
@@ -13,10 +14,21 @@ import {
 } from './styles';
 import Balance from './Balance';
 
+const animation = {
+  unMounted: { opacity: 0, y: 50 },
+  mounted: { opacity: 1, y: 0 },
+}
+
 const SideBar: React.FC = () => {
   return (
     <Wrapper>
-      <Container>
+      <Container
+        layout
+        variants={animation}
+        initial="unMounted"
+        animate="mounted"
+        transition={{ ...DEFAULT_TRANSITION }}
+      >
         <Balance />
         <AmountInvested>Ver Total Investido <FiBarChart2 size={"1.6rem"} /></AmountInvested>
         {
