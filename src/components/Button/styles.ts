@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { ButtonProps } from './Button.d';
 
-const variants = {
+const revisions = {
   secondary: css`
     background: transparent;
     border: 0.1rem solid ${({ theme }) => theme.colors.secondary};
@@ -13,7 +13,7 @@ const variants = {
 }
 
 export const Container = styled.button<ButtonProps>`
-  ${({ theme, variant, color, background }) => css`
+  ${({ theme, revision, color, background }) => css`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,12 +24,7 @@ export const Container = styled.button<ButtonProps>`
     padding: 0.8rem 2.4rem;
     border-radius: 0.4rem;
     color: ${color || theme.colors.secondary};
-    transition: ${theme.transition.default};
 
-    * {
-      transition: ${theme.transition.default}
-    }
-
-    ${variant && variants[variant]}
+    ${revision && revisions[revision]}
   `}
 `;
