@@ -16,17 +16,31 @@ import {
   RightNav,
 } from './styles';
 
+const animation = {
+  unMounted: { y: -150, scale: 0.95 },
+  mounted: {
+    y: 0,
+    scale: 1,
+  }
+}
+
 const Header: React.FC = () => {
   const user: User = { name: 'Jorge Habib' };
 
   return (
     <>
       <Container>
-        <Wrapper>
+        <Wrapper
+          layout
+          variants={animation}
+          initial="unMounted"
+          animate="mounted"
+          transition={{ duration: 1.2, delay: 0.5, ease: 'easeOut' }}
+        >
           <LeftNav>
             <BancoInter />
-          Internet Banking
-        </LeftNav>
+            Internet Banking
+          </LeftNav>
           <RightNav>
             <Button revision="secondary">Simulador Renda Fixa</Button>
             <AccountDropDown user={user} />
