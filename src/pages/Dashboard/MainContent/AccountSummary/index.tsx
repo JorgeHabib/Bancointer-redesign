@@ -116,7 +116,10 @@ const AccountSummary: React.FC = () => {
                 return (
                   <CustomTooltip
                     rightArrow
-                  >{label}: R$ {value}</CustomTooltip>
+                  >
+                    <p>{label}:</p>
+                    R$ {value}
+                  </CustomTooltip>
                 )
               }}
               theme={{
@@ -202,7 +205,9 @@ const AccountSummary: React.FC = () => {
                 max: 'auto',
               }}
               tooltip={({ point }) => (
-                <CustomTooltip>
+                <CustomTooltip
+                  before
+                >
                   {point.data.yFormatted}%
                 </CustomTooltip>
               )}

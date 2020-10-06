@@ -138,8 +138,8 @@ ${({ theme, income, outcome }) => css`
 `}
 `;
 
-export const CustomTooltip = styled.div<{ rightArrow?: boolean }>`
-${({ theme, rightArrow }) => css`
+export const CustomTooltip = styled.div<{ rightArrow?: boolean, before?: boolean }>`
+${({ theme, rightArrow, before }) => css`
   background: ${theme.colors.lightGrey};
 
   padding: 0.4rem 0.8rem;
@@ -150,25 +150,30 @@ ${({ theme, rightArrow }) => css`
 
   box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.28);
 
-  /* :before{
-    content: '';
-    display: block;
-    height: 0;
-    left: ${rightArrow ? `100%` : `50%`};
-    bottom: -45%;
-    transform: ${rightArrow
-      ? `translate3d(0%, -175%, 0)`
-      : `translate3d(-50%, 25%, 0)`
-    };
+  display: flex;
+  flex-direction: column;
 
-    position: absolute;
-    border-color: ${rightArrow
-      ? `transparent transparent transparent ${theme.colors.lightGrey}`
-      : `${theme.colors.lightGrey}  transparent transparent transparent`
-    };
-    border-style: solid;
-    border-width: 0.8rem;
-  } */
+  ${before && css`
+    :before{
+      content: '';
+      display: block;
+      height: 0;
+      left: ${rightArrow ? `100%` : `50%`};
+      bottom: -45%;
+      transform: ${rightArrow
+        ? `translate3d(0%, -175%, 0)`
+        : `translate3d(-50%, 25%, 0)`
+      };
+
+      position: absolute;
+      border-color: ${rightArrow
+        ? `transparent transparent transparent ${theme.colors.lightGrey}`
+        : `${theme.colors.lightGrey}  transparent transparent transparent`
+      };
+      border-style: solid;
+      border-width: 0.8rem;
+    }
+  `}
 
 `}
 `;
