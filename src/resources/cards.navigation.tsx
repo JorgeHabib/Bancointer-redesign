@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { BoletoIcon } from '../assets/images/icons';
+import { BoletoIcon, PixIcon } from '../assets/images/icons';
 
-import { FiBarChart2, FiCreditCard, FiUmbrella, FiRepeat, FiGift } from 'react-icons/fi';
+import { FiBarChart2, FiCreditCard, FiUmbrella, FiRepeat } from 'react-icons/fi';
 
 export default {
   Transferência: {
@@ -17,8 +17,8 @@ export default {
   Cartões: {
     icon: <FiCreditCard />,
   },
-  'Gift Card': {
-    icon: <FiGift />,
+  Pix: {
+    icon: <PixIcon />,
   },
   Seguros: {
     icon: <FiUmbrella />,
