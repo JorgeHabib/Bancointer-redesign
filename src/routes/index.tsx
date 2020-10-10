@@ -1,17 +1,23 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
-import Route from './Route';
+import { Switch, useLocation, Route, Redirect } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
 
 import Dashboard from '../pages/Dashboard';
+import LogIn from '../pages/LogIn';
+import { AnimatePresence } from 'framer-motion';
 
 const Routes: React.FC = () => {
-  return (
-    <Switch>
-      <Route path="/" component={() => <h1>Teste</h1>} exact />
-      <Route path="/dashboard" component={Dashboard} isPrivate />
+  const location = useLocation();
 
-      <Route component={() => <h2>Falha</h2>} />
-    </Switch>
+  return (
+    <AnimatePresence exitBeforeEnter={location.pathname === '/dashboard'}>
+      <Switch location={location} key={location.pathname}>
+        <Route exact path="/" component={LogIn} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+
+        <Route render={() => <Redirect to="/" />} />
+      </Switch>
+    </AnimatePresence>
   )
 }
 

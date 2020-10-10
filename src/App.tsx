@@ -6,17 +6,17 @@ import theme from './styles/theme';
 import GlobalStyle from './styles/global';
 
 import Routes from './routes';
-import { AnimatePresence } from 'framer-motion';
+import { AuthProvider } from './contexts/userContext';
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <AnimatePresence exitBeforeEnter>
+      <AuthProvider>
         <BrowserRouter>
           <Routes />
+          <GlobalStyle />
         </BrowserRouter>
-      </AnimatePresence>
-      <GlobalStyle />
+      </AuthProvider>
     </ThemeProvider>
   );
 }
