@@ -5,3 +5,4 @@ export { ReactComponent as HomeIcon } from './home.svg';
 export { ReactComponent as PlataformaPaiIcon } from './plataforma-pai.svg';
 export { ReactComponent as SmartphoneIcon } from './smartphone.svg';
 export { ReactComponent as TicketIcon } from './ticket.svg';
+export { ReactComponent as PixIcon } from './pix.svg';

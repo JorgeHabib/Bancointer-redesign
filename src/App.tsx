@@ -1,19 +1,22 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 
 import theme from './styles/theme';
 import GlobalStyle from './styles/global';
 
-import Dashboard from './pages/Dashboard';
-import { AnimatePresence } from 'framer-motion';
+import Routes from './routes';
+import { AuthProvider } from './contexts/userContext';
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <AnimatePresence exitBeforeEnter>
-        <Dashboard />
-      </AnimatePresence>
-      <GlobalStyle />
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes />
+          <GlobalStyle />
+        </BrowserRouter>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
