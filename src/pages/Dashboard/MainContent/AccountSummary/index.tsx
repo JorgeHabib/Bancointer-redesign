@@ -5,10 +5,11 @@ import { ResponsiveBar } from '@nivo/bar';
 
 import { FiCreditCard, FiFileText, FiEyeOff, FiEye } from 'react-icons/fi';
 
+import { useAuth } from '../../../../contexts/userContext';
+import formatCurrency from '../../../../utils/formatCurrency';
+
 import { PlataformaPaiIcon } from '../../../../assets/images/icons';
 import CreditCardIllustration from '../../../../assets/images/illustrations/card-illustration.png';
-
-import { barChartData, lineChartData, hiddenInvestments, hiddenBalance } from '../../../../resources';
 
 import Button from '../../../../components/Button';
 
@@ -59,6 +60,10 @@ const AccountSummary: React.FC = () => {
   const [displayStatement, setDisplayStatement] = useState(false);
   const [displayInvestments, setDisplayInvestments] = useState(false);
 
+  const { statementData, investmentData } = useAuth();
+  const { currentRevenue } = statementData;
+  const { totalInvested, monthEvolution } = investmentData;
+
   useEffect(() => {
     setTimeout(() => {
       setDisplayStatement(true);
@@ -87,14 +92,14 @@ const AccountSummary: React.FC = () => {
             onClick={() => setDisplayStatement(prevState => !prevState)}
             revision="transparent"
           >
-            {displayStatement ? <FiEyeOff /> : <FiEye />}
+            {displayStatement ? <FiEye /> : <FiEyeOff />}
           </Button>
         </Header>
         <DataWrapper>
           <LeftData>
             <ResponsiveBar
               animate={true}
-              data={displayStatement ? barChartData : hiddenBalance}
+              data={displayStatement ? statementData.statements : statementData.offStatements}
               indexBy="month"
               keys={['income', 'outcome']}
               colors={({ id, data }) => data[`${id}Color`]}
@@ -142,13 +147,13 @@ const AccountSummary: React.FC = () => {
             />
           </LeftData>
           <RightData>
-            <span>Receitas - Maio</span>
+            <span>Receitas - {currentRevenue.month}</span>
             <DataValue income>
-              {displayStatement ? 'R$ 1.985,44' : '---'}
+              {displayStatement ? formatCurrency(currentRevenue.income) : '---'}
             </DataValue>
-            <span>Despesas - Maio</span>
+            <span>Despesas - {currentRevenue.month}</span>
             <DataValue outcome>
-              {displayStatement ? 'R$ 2.539,33' : '---'}
+              {displayStatement ? formatCurrency(-1 * currentRevenue.outcome) : '---'}
             </DataValue>
           </RightData>
         </DataWrapper>
@@ -188,14 +193,14 @@ const AccountSummary: React.FC = () => {
             revision="transparent"
           >
             {
-              displayInvestments ? <FiEyeOff /> : <FiEye />
+              displayInvestments ? <FiEye /> : <FiEyeOff />
             }
           </Button>
         </Header>
         <DataWrapper>
           <LeftData>
             <ResponsiveLine
-              data={displayInvestments ? lineChartData : hiddenInvestments}
+              data={displayInvestments ? investmentData.investmentGrowth : investmentData.offInvestmentGrowth}
               useMesh
               margin={{ top: 8, right: 16, bottom: 20, left: 8 }}
               xScale={{ type: 'point' }}
@@ -234,11 +239,11 @@ const AccountSummary: React.FC = () => {
           <RightData>
             <span>Total investido</span>
             <DataValue>
-              {displayInvestments ? 'R$ 120,00' : '---'}
+              {displayInvestments ? formatCurrency(totalInvested) : '---'}
             </DataValue>
             <span>Evolução no mês</span>
             <DataValue>
-              {displayInvestments ? '20%' : '---'}
+              {displayInvestments ? `${monthEvolution}%` : '---'}
             </DataValue>
           </RightData>
         </DataWrapper>
