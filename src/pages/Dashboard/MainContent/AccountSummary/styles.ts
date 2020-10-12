@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import styled, { css, DefaultTheme } from 'styled-components';
 
+import { Container as Button } from '../../../../components/Button/styles';
+
 export const Container = styled(motion.section)`
 ${({ theme }) => css`
   display: grid;
@@ -62,6 +64,20 @@ ${({ theme, iconStroke }) => css`
     svg {
       stroke-width: 1.5;
       stroke: ${theme.colors.grey};
+    }
+  }
+
+  ${Button} {
+    svg {
+        transition: 0.5s;
+      }
+
+    :hover {
+      svg {
+        stroke-width: 2;
+        transform: scale(1.05)
+
+      }
     }
   }
 `}
