@@ -9,6 +9,7 @@ import {
   Container,
   Button,
 } from './styles';
+import { useAuth } from '../../../../contexts/userContext';
 
 const animation = {
   unMounted: { x: -50, opacity: 0 },
@@ -16,6 +17,8 @@ const animation = {
 }
 
 const HelpDesk: React.FC = () => {
+  const { user } = useAuth();
+
   return (
     <Container
       layout
@@ -25,7 +28,7 @@ const HelpDesk: React.FC = () => {
       whileTap={{ x: -3 }}
     >
       <img src={Babi} alt="Babi do Banco Inter" />
-      <span>Olá, Jorge. <br /> Posso Ajudar?</span>
+      <span>Olá, {user.name}. <br /> Posso Ajudar?</span>
 
       <Button>
         <FiArrowRight size={24} />
