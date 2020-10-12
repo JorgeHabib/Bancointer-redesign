@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
+import NumberFormat from 'react-number-format';
 
+import { useAuth } from '../../../../contexts/userContext';
 import Button from '../../../../components/Button';
 
 import {
@@ -21,6 +23,7 @@ const showBalanceAnimation = {
 
 const Balance: React.FC = () => {
   const [isBalanceVisible, setIsBalanceVisible] = useState(false);
+  const { balance } = useAuth();
 
   return (
     <Container>
@@ -43,7 +46,16 @@ const Balance: React.FC = () => {
                   exit="hidden"
                   variants={hideBalanceAnimation}
                 >
-                  R$ <strong>2.809,53</strong>
+                  R$ <NumberFormat
+                    value={balance}
+                    displayType={'text'}
+                    fixedDecimalScale={true}
+                    decimalScale={2}
+                    thousandSeparator={'.'}
+                    decimalSeparator={','}
+                    prefix={''}
+                    renderText={value => <strong>{value}</strong>}
+                  />
                 </motion.div>
               ) :
               (

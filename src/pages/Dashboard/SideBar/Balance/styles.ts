@@ -19,10 +19,15 @@ export const Container = styled.div`
     };
 
     ${Button} {
+      svg {
+        transition: 0.5s;
+      }
+
       :hover {
         svg {
           stroke-width: 2;
           transform: scale(1.05)
+
         }
       }
     }
